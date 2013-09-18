@@ -177,6 +177,7 @@ int T0430_report_all_supported_ops(const char *initiator, const char *url)
 	desc_size = sizeof (struct scsi_command_descriptor)
 		+  sizeof (struct scsi_op_timeout_descriptor);
 	desc = &tmp_rsoc->descriptors[0];
+#if 0
 	for (i = 0; i < tmp_rsoc->num_descriptors; i++) {
 		printf("op:%x\tsa:%x\tcdb_length:%d\ttimeout info: length:%d\tcommand specific:%x\tnominal processing%d\trecommended%d\n",
 		       desc->opcode,
@@ -189,6 +190,7 @@ int T0430_report_all_supported_ops(const char *initiator, const char *url)
 		desc = (struct scsi_command_descriptor *)((char *)desc +
 							  desc_size);
 	}
+#endif
 
 	printf("\n[OK]\n");
 	scsi_free_scsi_task(task);
