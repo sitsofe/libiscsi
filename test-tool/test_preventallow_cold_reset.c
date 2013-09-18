@@ -51,7 +51,8 @@ test_preventallow_cold_reset(void)
 	logging(LOG_VERBOSE, "Perform cold reset on target");
 	ret = iscsi_task_mgmt_target_cold_reset_sync(iscsic);
 	logging(LOG_VERBOSE, "Wait until all unit attentions clear");
-	while (testunitready(iscsic, tgt_lun) != 0);
+	while (testunitready(iscsic, tgt_lun) != 0)
+		;
 	CU_ASSERT_EQUAL(ret, 0);
 
 
