@@ -50,6 +50,7 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <sys/ioctl.h>
+#include <sys/uio.h>
 #endif
 
 #ifdef NEED_SYS_FILIO_H
