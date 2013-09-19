@@ -375,7 +375,7 @@ try_again:
 
 	old_iscsi->is_reconnecting = 0;
 	old_iscsi->last_reconnect = time(NULL);
-	ISCSI_LOG(iscsi, 2, "reconnect was successful");
+	ISCSI_LOG(old_iscsi, 2, "reconnect was successful");
 
 	return 0;
 }
