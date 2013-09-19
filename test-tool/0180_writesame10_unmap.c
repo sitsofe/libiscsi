@@ -96,8 +96,6 @@ int T0180_writesame10_unmap(const char *initiator, const char *url)
 		goto finished;
 	}
 
-	ret = 0;
-
 	/* unmap the first 1 - 256 blocks at the start of the LUN */
 	printf("Unmapping first 1-256 blocks ... ");
 	if (lbp->lbpws10 == 0) {

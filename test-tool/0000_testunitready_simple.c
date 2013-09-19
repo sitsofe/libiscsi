@@ -40,8 +40,6 @@ int T0000_testunitready_simple(const char *initiator, const char *url)
 		return -1;
 	}
 
-	ret=0;
-
 	ret = testunitready(iscsi, lun);
 	if (ret != 0) {
 		goto finished;
