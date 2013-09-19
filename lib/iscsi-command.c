@@ -417,6 +417,7 @@ iscsi_process_scsi_reply(struct iscsi_context *iscsi, struct iscsi_pdu *pdu,
 		if (task->datain.data == NULL) {
 			iscsi_set_error(iscsi, "failed to allocate blob for "
 					"sense data");
+			return -1;
 		}
 		memcpy(task->datain.data, in->data, task->datain.size);
 
