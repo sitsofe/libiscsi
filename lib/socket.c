@@ -88,7 +88,7 @@ iscsi_add_to_outqueue(struct iscsi_context *iscsi, struct iscsi_pdu *pdu)
 		return;
 	}
 	
-	/* queue pdus in ascending order of CmdSN. 
+	/* queue pdus in ascending order of CmdSN.
 	 * ensure that pakets with the same CmdSN are kept in FIFO order.
 	 */
 	do {
@@ -416,6 +416,11 @@ iscsi_iovector_readv_writev(struct iscsi_context *iscsi, struct scsi_iovector *i
 	}
 
 	niov = iovector->niov;
+	if (niov < 1) {
+		errno = EINVAL;
+		return -1;
+	}
+
 	iovs = alloca(sizeof(struct iovec) * niov);
 	if (iovs == NULL) {
 		errno = ENOMEM;
