@@ -200,7 +200,9 @@ iscsi_task_mgmt_sync_cb(struct iscsi_context *iscsi, int status,
 			break;
 		}
 
-		state->status = SCSI_STATUS_ERROR;
+		if (state != NULL) {
+			state->status = SCSI_STATUS_ERROR;
+		}
 	}
 }
 
