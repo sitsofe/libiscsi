@@ -98,11 +98,10 @@ scsi_malloc(struct scsi_task *task, size_t size)
 {
 	struct scsi_allocated_memory *mem;
 
-	mem = malloc(sizeof(struct scsi_allocated_memory) + size);
+	mem = calloc(sizeof(struct scsi_allocated_memory) + size, 1);
 	if (mem == NULL) {
 		return NULL;
 	}
-	memset(mem, 0, sizeof(struct scsi_allocated_memory) + size);
 	SLIST_ADD(&task->mem, mem);
 	return &mem->buf[0];
 }
