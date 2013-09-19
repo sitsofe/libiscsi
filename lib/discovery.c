@@ -166,6 +166,14 @@ iscsi_process_text_reply(struct iscsi_context *iscsi, struct iscsi_pdu *pdu,
 			target->next = targets;
 			targets = target;
 		} else if (!strncmp((char *)ptr, "TargetAddress=", 14)) {
+			if (targets == NULL) {
+				iscsi_set_error(iscsi, "Target address seen "
+						"before target name");
+				pdu->callback(iscsi, SCSI_STATUS_ERROR, NULL,
+					      pdu->private_data);
+				/* Nothing to free */
+				return -1;
+			}
 			targets->target_address = iscsi_strdup(iscsi, (char *)ptr+14);
 			if (targets->target_address == NULL) {
 				iscsi_set_error(iscsi, "Failed to allocate "
